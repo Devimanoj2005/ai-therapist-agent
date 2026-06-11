@@ -42,9 +42,10 @@ export default function Dashboard() {
     );
   }
 
+  const logoutMutation = trpc.auth.logout.useMutation();
   const handleLogout = async () => {
     try {
-      await trpc.auth.logout.useMutation().mutateAsync();
+      await logoutMutation.mutateAsync();
       setLocation("/");
     } catch (error) {
       toast.error("Failed to logout");
@@ -71,10 +72,18 @@ export default function Dashboard() {
             <Heart className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Button onClick={() => setLocation("/chat")}>
               <Plus className="w-4 h-4 mr-2" />
               New Chat
+            </Button>
+            <Button variant="outline" onClick={() => setLocation("/sessions")}>
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Sessions
+            </Button>
+            <Button variant="outline" onClick={() => setLocation("/wellness")}>
+              <Wind className="w-4 h-4 mr-2" />
+              Wellness
             </Button>
             <Button variant="outline" onClick={handleLogout}>
               <LogOut className="w-4 h-4 mr-2" />

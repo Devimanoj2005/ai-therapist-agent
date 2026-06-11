@@ -82,9 +82,9 @@
 - [x] Landing/Home page with call-to-action
 - [x] Chat page (anonymous and authenticated)
 - [x] Dashboard (authenticated users only)
-- [ ] Session history page
+- [x] Session history page with search and filtering
 - [ ] Session detail/summary view
-- [ ] Wellness tools page (affirmations & breathing)
+- [x] Wellness tools page (affirmations & breathing exercises)
 - [ ] Settings page (language, theme, account)
 - [x] Not found page
 
@@ -102,6 +102,6 @@
 - [x] Phase 2: Database schema design
 - [x] Phase 3: AI therapist chat engine with safety
 - [x] Phase 4: Frontend auth and chat interface (Home, Chat, Dashboard pages created)
-- [ ] Phase 5: Session history and wellness tools
-- [ ] Phase 6: Polish and responsive design
+- [x] Phase 5: Session history and wellness tools (SessionHistory, Wellness pages created)
+- [x] Phase 6: Polish and responsive design (elegant calming UI with dark mode)
 - [ ] Phase 7: Testing and delivery
