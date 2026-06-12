@@ -14,12 +14,22 @@ export default function Dashboard() {
   const { user, isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
+  const logoutMutation = trpc.auth.logout.useMutation();
 
-  // tRPC queries
-  const sessionsQuery = trpc.sessions.list.useQuery({ limit: 50 });
-  const moodTrendsQuery = trpc.mood.trends.useQuery();
-  const affirmationQuery = trpc.wellness.getAffirmation.useQuery({ language: "en" });
-  const breathingExercisesQuery = trpc.wellness.getBreathingExercises.useQuery({ language: "en" });
+  // tRPC queries - always called, even if not authenticated
+  const sessionsQuery = trpc.sessions.list.useQuery({ limit: 50 }, { enabled: isAuthenticated });
+  const moodTrendsQuery = trpc.mood.trends.useQuery(undefined, { enabled: isAuthenticated });
+  const affirmationQuery = trpc.wellness.getAffirmation.useQuery({ language: "en" }, { enabled: isAuthenticated });
+  const breathingExercisesQuery = trpc.wellness.getBreathingExercises.useQuery({ language: "en" }, { enabled: isAuthenticated });
+
+  const handleLogout = async () => {
+    try {
+      await logoutMutation.mutateAsync();
+      setLocation("/");
+    } catch (error) {
+      toast.error("Failed to logout");
+    }
+  };
 
   if (!isAuthenticated) {
     return (
@@ -42,15 +52,7 @@ export default function Dashboard() {
     );
   }
 
-  const logoutMutation = trpc.auth.logout.useMutation();
-  const handleLogout = async () => {
-    try {
-      await logoutMutation.mutateAsync();
-      setLocation("/");
-    } catch (error) {
-      toast.error("Failed to logout");
-    }
-  };
+
 
   const sessions = sessionsQuery.data || [];
   const moodTrends = moodTrendsQuery.data || [];
