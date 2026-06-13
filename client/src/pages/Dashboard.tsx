@@ -66,13 +66,13 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-blue-50 dark:bg-blue-950">
       {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-40">
+      <div className="border-b border-blue-200 dark:border-blue-800 bg-white dark:bg-blue-900 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Heart className="w-6 h-6 text-blue-500 dark:text-blue-400" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+            <h1 className="text-2xl font-bold text-blue-900 dark:text-blue-100">Dashboard</h1>
           </div>
           <div className="flex gap-2 flex-wrap">
             <Button onClick={() => setLocation("/chat")}>
@@ -98,10 +98,10 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+          <h2 className="text-3xl font-bold text-blue-900 dark:text-blue-100 mb-2">
             Welcome back, {user?.name || "Friend"}!
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-blue-700 dark:text-blue-200">
             Track your wellness journey and revisit your therapy sessions.
           </p>
         </div>
@@ -140,12 +140,12 @@ export default function Dashboard() {
 
             {sessionsQuery.isLoading ? (
               <Card className="p-8 text-center">
-                <p className="text-gray-600 dark:text-gray-400">Loading sessions...</p>
+                <p className="text-blue-700 dark:text-blue-200">Loading sessions...</p>
               </Card>
             ) : filteredSessions.length === 0 ? (
               <Card className="p-8 text-center">
-                <MessageCircle className="w-12 h-12 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <MessageCircle className="w-12 h-12 text-blue-300 dark:text-blue-700 mx-auto mb-4" />
+                <p className="text-blue-700 dark:text-blue-200 mb-4">
                   No sessions yet. Start a new chat to begin your wellness journey.
                 </p>
                 <Button onClick={() => setLocation("/chat")}>Start a Chat</Button>
@@ -159,7 +159,7 @@ export default function Dashboard() {
                     onClick={() => setLocation(`/session/${session.id}`)}
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                      <h3 className="font-semibold text-blue-900 dark:text-blue-100">
                         {session.title || "Untitled Session"}
                       </h3>
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -170,7 +170,7 @@ export default function Dashboard() {
                         {session.status}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    <p className="text-sm text-blue-700 dark:text-blue-200 mb-3">
                       {new Date(session.createdAt).toLocaleDateString()} at{" "}
                       {new Date(session.createdAt).toLocaleTimeString([], {
                         hour: "2-digit",
@@ -178,7 +178,7 @@ export default function Dashboard() {
                       })}
                     </p>
                     {session.summary && (
-                      <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
+                      <p className="text-sm text-blue-800 dark:text-blue-200 line-clamp-2">
                         {session.summary.fullSummary}
                       </p>
                     )}
@@ -192,18 +192,18 @@ export default function Dashboard() {
           <TabsContent value="mood" className="space-y-4">
             {moodTrendsQuery.isLoading ? (
               <Card className="p-8 text-center">
-                <p className="text-gray-600 dark:text-gray-400">Loading mood data...</p>
+                <p className="text-blue-700 dark:text-blue-200">Loading mood data...</p>
               </Card>
             ) : moodTrends.length === 0 ? (
               <Card className="p-8 text-center">
-                <TrendingUp className="w-12 h-12 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400">
+                <TrendingUp className="w-12 h-12 text-blue-300 dark:text-blue-700 mx-auto mb-4" />
+                <p className="text-blue-700 dark:text-blue-200">
                   No mood data yet. Start a chat session to begin tracking your mood.
                 </p>
               </Card>
             ) : (
               <Card className="p-6">
-                <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-4">
                   Your Mood Journey
                 </h3>
                 <ResponsiveContainer width="100%" height={300}>
@@ -240,16 +240,16 @@ export default function Dashboard() {
           <TabsContent value="wellness" className="space-y-4">
             <div className="grid md:grid-cols-2 gap-6">
               {/* Daily Affirmation */}
-              <Card className="p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50">
+              <Card className="p-6 bg-blue-100 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-800">
                 <div className="flex items-start gap-3 mb-4">
                   <Sparkles className="w-6 h-6 text-blue-500 dark:text-blue-400 flex-shrink-0 mt-1" />
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100">Daily Affirmation</h3>
+                  <h3 className="font-semibold text-blue-900 dark:text-blue-100">Daily Affirmation</h3>
                 </div>
                 {affirmationQuery.isLoading ? (
-                  <p className="text-gray-600 dark:text-gray-400">Loading affirmation...</p>
+                  <p className="text-blue-700 dark:text-blue-200">Loading affirmation...</p>
                 ) : affirmation ? (
                   <div className="space-y-3">
-                    <p className="text-lg text-gray-700 dark:text-gray-300 italic">
+                    <p className="text-lg text-blue-800 dark:text-blue-200 italic">
                       "{affirmation.text}"
                     </p>
                     <Button
@@ -261,18 +261,18 @@ export default function Dashboard() {
                     </Button>
                   </div>
                 ) : (
-                  <p className="text-gray-600 dark:text-gray-400">No affirmation available</p>
+                  <p className="text-blue-700 dark:text-blue-200">No affirmation available</p>
                 )}
               </Card>
 
               {/* Breathing Exercises */}
-              <Card className="p-6 bg-green-50 dark:bg-green-950/30 border border-green-100 dark:border-green-900/50">
+              <Card className="p-6 bg-blue-100 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-800">
                 <div className="flex items-start gap-3 mb-4">
                   <Wind className="w-6 h-6 text-green-500 dark:text-green-400 flex-shrink-0 mt-1" />
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100">Breathing Exercises</h3>
+                  <h3 className="font-semibold text-blue-900 dark:text-blue-100">Breathing Exercises</h3>
                 </div>
                 {breathingExercisesQuery.isLoading ? (
-                  <p className="text-gray-600 dark:text-gray-400">Loading exercises...</p>
+                  <p className="text-blue-700 dark:text-blue-200">Loading exercises...</p>
                 ) : breathingExercises.length > 0 ? (
                   <div className="space-y-2">
                     {breathingExercises.slice(0, 3).map((exercise) => (
@@ -288,7 +288,7 @@ export default function Dashboard() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-blue-700 dark:text-blue-200">
                     No breathing exercises available
                   </p>
                 )}
@@ -299,19 +299,19 @@ export default function Dashboard() {
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-4">
             <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Account Settings</h3>
+              <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-4">Account Settings</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
                     Name
                   </label>
-                  <p className="text-gray-900 dark:text-gray-100">{user?.name || "Not set"}</p>
+                  <p className="text-blue-900 dark:text-blue-100">{user?.name || "Not set"}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
                     Email
                   </label>
-                  <p className="text-gray-900 dark:text-gray-100">{user?.email || "Not set"}</p>
+                  <p className="text-blue-900 dark:text-blue-100">{user?.email || "Not set"}</p>
                 </div>
               </div>
             </Card>
